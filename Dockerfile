@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get install -y wget libatomic1 libc-bin && \
     mkdir -p /opt/altv/modules && \
     mkdir -p /opt/altv/resources && \
-	mkdir -p /opt/altv/extra-resources && \
+    mkdir -p /opt/altv/extra-resources && \
     mkdir -p /opt/altv/data && \
     wget --no-cache -q -O /opt/altv/altv-server https://cdn.altv.mp/server/${BRANCH}/x64_linux/altv-server && \
     wget --no-cache -q -O /opt/altv/data/vehmodels.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/vehmodels.bin && \
@@ -60,15 +60,15 @@ RUN apt-get install -y wget git && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     nvm use 16 && \
     npm install axios && \
-	npm install cors && \
-	npm install discord.js && \
-	npm install dotenv && \
-	npm install download && \
-	npm install express && \
-	npm install sjcl && \
-	git -C /opt/altv/resources clone https://github.com/Stuyk/altv-discord-auth && \
-	git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
-	git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
+    npm install cors && \
+    npm install discord.js && \
+    npm install dotenv && \
+    npm install download && \
+    npm install express && \
+    npm install sjcl && \
+    git -C /opt/altv/resources clone https://github.com/Stuyk/altv-discord-auth && \
+    git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
+    git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
     apt-get purge -y wget git && \
     apt autoremove -y && \
     apt-get clean
