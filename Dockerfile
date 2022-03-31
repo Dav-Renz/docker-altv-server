@@ -56,6 +56,7 @@ WORKDIR /opt/altv/
 ######
 # Install some resources
 ######
+SHELL ["/bin/bash", "-c"]
 RUN apt-get install -y wget git && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     nvm use 16 && \
