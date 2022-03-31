@@ -59,6 +59,7 @@ WORKDIR /opt/altv/
 SHELL ["/bin/bash", "-c"]
 RUN apt-get install -y wget git && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+    source ~/.bashrc && \
     nvm use 16 && \
     npm install axios && \
     npm install cors && \
