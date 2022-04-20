@@ -61,9 +61,8 @@ RUN apt-get install -y wget git && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     source ~/.nvm/nvm.sh h && \
     nvm install 16 && \
-    nvm use 16
-COPY ./.docker/files/package.json /opt/altv/
-RUN npm install axios && \
+    nvm use 16 && \
+    npm install axios && \
     npm install cors && \
     npm install discord.js && \
     npm install dotenv && \
