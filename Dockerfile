@@ -56,6 +56,7 @@ WORKDIR /opt/altv/
 ######
 # Install some resources
 ######
+COPY ./.docker/files/package.json /opt/altv/
 SHELL ["/bin/bash", "-c"]
 RUN apt-get install -y wget git && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
