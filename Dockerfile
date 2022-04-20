@@ -49,7 +49,6 @@ RUN apt-get install -y wget gnupg && \
     apt-get purge -y wget gnupg && \
     apt autoremove -y && \
     apt-get clean
-	
 
 WORKDIR /opt/altv/
 
@@ -63,19 +62,14 @@ RUN apt-get install -y wget git && \
     source ~/.nvm/nvm.sh h && \
     nvm install 16 && \
     nvm use 16 && \
-    npm install axios && \
-    npm install cors && \
-    npm install discord.js && \
-    npm install dotenv && \
-    npm install download && \
-    npm install express && \
+    npm install chalk && \
+    npm install simplymongo && \
     npm install sjcl && \
-    git -C /opt/altv/resources clone https://github.com/Stuyk/altv-discord-auth && \
+    git -C /opt/altv/resources clone https://github.com/Stuyk/altv-os-auth && \
     git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
     git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
     cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
     cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/ && \
-    apt-get purge -y wget git && \
     apt autoremove -y && \
     apt-get clean
 
