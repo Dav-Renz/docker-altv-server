@@ -30,6 +30,14 @@ ALTV_AUTH_DB_USERNAME:-"null,"
 ALTV_AUTH_DB_PASSWORT:-"null"
 
 
+# resources stuff
+
+ALTV_RES_UPDATE_GAMEMODE:-"false"
+ALTV_RES_UPDATE_AUTH:-"false"
+ALTV_RES_UPDATE_OTHER_RES:-"false"
+
+ALTV_RES_SCRIPT_URL:-""
+
 # alt:V server CDN options
 ALTV_SERVER_CDN_URL=${ALTV_SERVER_CDN_URL:-""}
 
@@ -67,6 +75,23 @@ if [ ! -z "$ALTV_SERVER_CDN_URL" ]; then
     ALTV_SERVER_CDN_URL="useCdn: true
 cdnUrl: \"$ALTV_SERVER_CDN_URL\""
 fi
+
+
+if [ "$ALTV_RES_UPDATE_GAMEMODE" = "true" ]; then
+    echo "Updating Gamemode"
+	git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam
+fi
+
+if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
+    echo "Updating Auth Resource"
+	git -C /opt/altv/resources clone --single-branch --branch added-activation https://github.com/Dav-Renz/altv-os-auth
+fi
+
+if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
+    echo "Updating other Resources"
+	wget -O- "$ALTV_RES_SCRIPT_URL" | bash
+fi
+
 
 cat <<EOF >/opt/altv/AltV.Net.Host.runtimeconfig.json
 {
