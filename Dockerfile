@@ -65,6 +65,7 @@ RUN apt-get install -y wget git && \
     npm install chalk && \
     npm install simplymongo && \
     npm install sjcl && \
+    git config --global alias.up '!git remote update -p; git merge --ff-only @{u}' && \
     git -C /opt/altv/resources clone --single-branch --branch added-activation https://github.com/Dav-Renz/altv-os-auth && \
     git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
     git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
