@@ -80,7 +80,7 @@ fi
 if [ "$ALTV_RES_UPDATE_GAMEMODE" = "true" ]; then
     echo "Updating Gamemode"
     cd resources
-    cd altv_freeroam
+    cd altV_freeroam
 	git up
     cd .. && cd ..
 fi
