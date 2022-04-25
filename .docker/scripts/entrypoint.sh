@@ -79,12 +79,12 @@ fi
 
 if [ "$ALTV_RES_UPDATE_GAMEMODE" = "true" ]; then
     echo "Updating Gamemode"
-	git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam
+	git up
 fi
 
 if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
     echo "Updating Auth Resource"
-	git -C /opt/altv/resources clone --single-branch --branch added-activation https://github.com/Dav-Renz/altv-os-auth
+	git up
 fi
 
 if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
