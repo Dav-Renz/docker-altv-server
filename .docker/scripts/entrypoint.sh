@@ -82,6 +82,7 @@ if [ "$ALTV_RES_UPDATE_GAMEMODE" = "true" ]; then
     cd resources
     cd altv_freeroam
 	git up
+    cd .. && cd ..
 fi
 
 if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
@@ -89,6 +90,7 @@ if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
     cd resources
     cd altv-os-auth
 	git up
+    cd .. && cd ..
 fi
 
 if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
