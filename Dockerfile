@@ -17,25 +17,25 @@ RUN apt-get update && \
     wget --no-cache -q -O /opt/altv/data/vehmods.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/vehmods.bin && \
     wget --no-cache -q -O /opt/altv/data/clothes.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/clothes.bin && \
     chmod +x /opt/altv/altv-server /root/entrypoint.sh && \
-    apt-get purge -y wget && \
+    apt-get purge -y && \
     apt autoremove -y && \
     apt-get clean
 
 ######
 # Install JS Module
 ######
-RUN apt-get install -y wget jq && \
+RUN apt-get install -y jq && \
     mkdir -p /opt/altv/modules/js-module/ && \
     wget --no-cache -q -O /opt/altv/modules/js-module/libnode.so.83 https://cdn.altv.mp/js-module/${BRANCH}/x64_linux/modules/js-module/libnode.so.83 && \
     wget --no-cache -q -O /opt/altv/modules/js-module/libjs-module.so https://cdn.altv.mp/js-module/${BRANCH}/x64_linux/modules/js-module/libjs-module.so && \
-    apt-get purge -y wget jq && \
+    apt-get purge -y jq && \
     apt autoremove -y && \
     apt-get clean
 
 ######
 # Install .NET 6 Module
 ######
-RUN apt-get install -y wget gnupg && \
+RUN apt-get install -y gnupg && \
     # install dotnet runtime(s)
     wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
@@ -47,7 +47,7 @@ RUN apt-get install -y wget gnupg && \
     mkdir -p /usr/share/dotnet/host/fxr/ && \
     wget --no-cache -q -O /opt/altv/AltV.Net.Host.dll https://cdn.altv.mp/coreclr-module/${BRANCH}/x64_linux/AltV.Net.Host.dll && \
     # remove unused tools
-    apt-get purge -y wget gnupg && \
+    apt-get purge -y gnupg && \
     apt autoremove -y && \
     apt-get clean
 
@@ -58,7 +58,7 @@ WORKDIR /opt/altv/
 ######
 COPY ./.docker/files/package.json /opt/altv/
 SHELL ["/bin/bash", "-c"]
-RUN apt-get install -y wget git zip unzip coreutils && \
+RUN apt-get install -y git zip unzip coreutils && \
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
     source ~/.nvm/nvm.sh h && \
     nvm install 16 && \
@@ -70,8 +70,11 @@ RUN apt-get install -y wget git zip unzip coreutils && \
     git -C /opt/altv/resources clone --single-branch --branch added-activation https://github.com/Dav-Renz/altv-os-auth && \
     git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
     git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
+    git -C /opt/altv/resources clone https://github.com/Dav-Renz/altv-server-resources.git && \
     cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
     cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/ && \
+    shopt -s extglob && \
+    cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/ && \
     apt autoremove -y && \
     apt-get clean
 

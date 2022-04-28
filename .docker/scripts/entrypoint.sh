@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# starting directory
+START_DIR=$(pwd)
+
 # general alt:V server options
 ALTV_SERVER_NAME:-"Alt:V Server on Docker!"
 ALTV_SERVER_HOST:-"0.0.0.0"
@@ -87,19 +91,28 @@ fi
 
 if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
     echo "Updating Auth Resource"
-    cd resources
-    cd altv-os-auth
+    cd /opt/altv/resources/altv-os-auth
 	git up
-    cd .. && cd ..
+    cd $START_DIR
+    #cd resources
+    #cd altv-os-auth
+	#git up
+    #cd .. && cd ..
 fi
 
 if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
     echo "Updating other Resources"
-	wget -O update-res.zip "$ALTV_RES_SCRIPT_URL"
-    unzip -o update-res.zip
-    rm update-res.zip
-    chmod +x update-res.sh
-    /bin/bash update-res.sh
+    cd /opt/altv/resources/altv-server-resources
+	git up
+    cd $START_DIR
+    shopt -s extglob
+    cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/
+
+	#wget -O update-res.zip "$ALTV_RES_SCRIPT_URL"
+    #unzip -o update-res.zip
+    #rm update-res.zip
+    #chmod +x update-res.sh
+    #/bin/bash update-res.sh
 fi
 
 
