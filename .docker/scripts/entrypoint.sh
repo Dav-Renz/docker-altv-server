@@ -83,10 +83,9 @@ fi
 
 if [ "$ALTV_RES_UPDATE_GAMEMODE" = "true" ]; then
     echo "Updating Gamemode"
-    cd resources
-    cd altV_freeroam
+    cd /opt/altv/resources/altV_freeroam
 	git up
-    cd .. && cd ..
+    cd $START_DIR
 fi
 
 if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
@@ -94,10 +93,6 @@ if [ "$ALTV_RES_UPDATE_AUTH" = "true" ]; then
     cd /opt/altv/resources/altv-os-auth
 	git up
     cd $START_DIR
-    #cd resources
-    #cd altv-os-auth
-	#git up
-    #cd .. && cd ..
 fi
 
 if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
