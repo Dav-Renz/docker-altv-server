@@ -72,11 +72,9 @@ RUN apt-get install -y wget git zip unzip && \
     git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
     git -C /opt/altv/resources clone https://github.com/Dav-Renz/altv-server-resources.git && \
     cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
-    cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/
-RUN shopt -s extglob
-RUN cp -a /opt/altv/resources/altv-server-resources/* /opt/altv/resources/ && \
-    rm -dr /opt/altv/resources/.git && rm README.md
-RUN apt autoremove -y && \
+    cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/ && \
+    cp -a /opt/altv/resources/altv-server-resources/* /opt/altv/resources/ && \
+    apt autoremove -y && \
     apt-get clean
 
 

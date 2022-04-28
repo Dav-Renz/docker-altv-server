@@ -105,8 +105,7 @@ if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
     cd /opt/altv/resources/altv-server-resources
 	git up
     cd $START_DIR
-    shopt -s extglob
-    cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/
+    cp -a /opt/altv/resources/altv-server-resources/* /opt/altv/resources/
 
 	#wget -O update-res.zip "$ALTV_RES_SCRIPT_URL"
     #unzip -o update-res.zip
