@@ -65,16 +65,16 @@ RUN apt-get install -y wget git zip unzip && \
     nvm use 16 && \
     npm install chalk && \
     npm install simplymongo && \
-    npm install sjcl
-RUN git config --global alias.up '!git remote update -p; git merge --ff-only @{u}' && \
+    npm install sjcl && \
+    git config --global alias.up '!git remote update -p; git merge --ff-only @{u}' && \
     git -C /opt/altv/resources clone --single-branch --branch added-activation https://github.com/Dav-Renz/altv-os-auth && \
     git -C /opt/altv/resources clone https://github.com/Dav-Renz/altV_freeroam && \
     git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
-    git -C /opt/altv/resources clone https://github.com/Dav-Renz/altv-server-resources.git
-RUN cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
+    git -C /opt/altv/resources clone https://github.com/Dav-Renz/altv-server-resources.git && \
+    cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
     cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/
-RUN shopt -s extglob && \
-    cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/
+RUN shopt -s extglob
+RUN cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/
 RUN apt autoremove -y && \
     apt-get clean
 
