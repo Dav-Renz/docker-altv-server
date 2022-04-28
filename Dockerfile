@@ -74,7 +74,7 @@ RUN apt-get install -y wget git zip unzip && \
     cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
     cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/
 RUN shopt -s extglob
-RUN cp -a /opt/altv/resources/altv-server-resources/!(.git|*.md|) /opt/altv/resources/
+RUN cp -a /opt/altv/resources/altv-server-resources/* /opt/altv/resources/
 RUN apt autoremove -y && \
     apt-get clean
 
