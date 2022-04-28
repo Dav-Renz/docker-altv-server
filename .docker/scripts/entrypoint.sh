@@ -95,8 +95,9 @@ fi
 
 if [ "$ALTV_RES_UPDATE_OTHER_RES" = "true" ]; then
     echo "Updating other Resources"
-	wget "$ALTV_RES_SCRIPT_URL"
+	wget -O update-res.zip "$ALTV_RES_SCRIPT_URL"
     unzip -o update-res.zip
+    rm update-res.zip
     chmod +x update-res.sh
     /bin/bash update-res.sh
 fi
