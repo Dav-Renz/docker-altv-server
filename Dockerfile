@@ -52,6 +52,19 @@ RUN apt-get install -y wget gnupg && \
 
 WORKDIR /opt/altv/
 
+######
+# Install some resources
+######
+COPY ./.docker/files/package.json /opt/altv/
+SHELL ["/bin/bash", "-c"]
+RUN apt-get install -y wget git zip unzip && \
+    git config --global alias.up '!git remote update -p; git merge --ff-only @{u}' && \
+    git -C /opt/altv/resources clone https://github.com/altmp/altv-example-resources && \
+    cp -r /opt/altv/resources/altv-example-resources/chat/ /opt/altv/resources/chat/ && \
+    cp -r /opt/altv/resources/altv-example-resources/freeroam/ /opt/altv/resources/freeroam/ && \
+    apt autoremove -y && \
+    apt-get clean
+
 # Meant are the default values provided by the entrypoint script.
 # Of course you can change the port as you like by using the
 # environment variable "ALTV_SERVER_PORT".
