@@ -2,6 +2,7 @@
 FROM ubuntu:focal-20210723
 
 ARG BRANCH=release
+ARG LIBNODE_VERSION=102
 
 COPY ./.docker/scripts/entrypoint.sh /root/
 
@@ -13,9 +14,9 @@ RUN apt-get update && \
     mkdir -p /opt/altv/data && \
     mkdir -p /opt/altv/res-load && \
     wget --no-cache -q -O /opt/altv/altv-server https://cdn.altv.mp/server/${BRANCH}/x64_linux/altv-server && \
-    wget --no-cache -q -O /opt/altv/data/vehmodels.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/vehmodels.bin && \
-    wget --no-cache -q -O /opt/altv/data/vehmods.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/vehmods.bin && \
-    wget --no-cache -q -O /opt/altv/data/clothes.bin https://cdn.altv.mp/server/${BRANCH}/x64_linux/data/clothes.bin && \
+    wget --no-cache -q -O /opt/altv/data/vehmodels.bin https://cdn.altv.mp/data/${BRANCH}/data/vehmodels.bin && \
+    wget --no-cache -q -O /opt/altv/data/vehmods.bin https://cdn.altv.mp/data/${BRANCH}/data/vehmods.bin && \
+    wget --no-cache -q -O /opt/altv/data/clothes.bin https://cdn.altv.mp/data/${BRANCH}/data/clothes.bin && \
     chmod +x /opt/altv/altv-server /root/entrypoint.sh && \
     apt-get purge -y wget && \
     apt autoremove -y && \
@@ -26,8 +27,9 @@ RUN apt-get update && \
 ######
 RUN apt-get install -y wget jq && \
     mkdir -p /opt/altv/modules/js-module/ && \
-    wget --no-cache -q -O /opt/altv/modules/js-module/libnode.so.83 https://cdn.altv.mp/js-module/${BRANCH}/x64_linux/modules/js-module/libnode.so.83 && \
+    wget --no-cache -q -O /opt/altv/modules/js-module/libnode.so.${LIBNODE_VERSION} https://cdn.altv.mp/js-module/${BRANCH}/x64_linux/modules/js-module/libnode.so.${LIBNODE_VERSION} && \
     wget --no-cache -q -O /opt/altv/modules/js-module/libjs-module.so https://cdn.altv.mp/js-module/${BRANCH}/x64_linux/modules/js-module/libjs-module.so && \
+    wget --no-cache -q -O /opt/altv/modules/js-module/libjs-bytecode-module.so https://cdn.altv.mp/js-bytecode-module/${BRANCH}/x64_linux/modules/libjs-bytecode-module.so && \
     apt-get purge -y wget jq && \
     apt autoremove -y && \
     apt-get clean
